@@ -35,7 +35,7 @@ class Ferm {
         
         return $this -> animalsNamesCounts;
     }
-    //добавление 
+    //добавление продукта полученного за N количество дней, где ключ это название, а значение количество собранного продукта за весь период
     public function addСollectProducts($day= 1):void
     {   
         $this->animalsProductCounts = [];
@@ -50,6 +50,7 @@ class Ferm {
             }
         }
     }
+    //вывод информации о продукте
     public function infoProducts():void
     {
         echo "Тип продукта и его количества<br>";
@@ -60,12 +61,13 @@ class Ferm {
         }
         
     }
+    //вывод информации о животных
     public function infoAnimals():void
     {
         echo "Тип животных и их количество<br>"; 
-        foreach($this  -> getAnimalsNamesCounts() as $animalNames => $animalCount)
+        foreach($this  -> getAnimalsNamesCounts() as $animalName => $animalCount)
         {
-            echo($animalNames . " : " . $animalCount . "<br>");
+            echo($animalName . " : " . $animalCount . "<br>");
         }
     }
 
