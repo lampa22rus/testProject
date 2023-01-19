@@ -2,6 +2,7 @@
 /**
  * абстрактный класс для создания животных
  */
+
 namespace app\Models;
 
 abstract class Animal
