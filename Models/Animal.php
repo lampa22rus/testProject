@@ -35,5 +35,5 @@ abstract class Animal
         return $this->ProductName;
     }
     //возвращает количество продукта за один сбор
-    abstract function getCountProduct(): int;
+    abstract protected function getCountProduct(): int;
 }
