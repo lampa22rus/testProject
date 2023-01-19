@@ -1,9 +1,7 @@
 <?php
-
 /**
  * абстрактный класс для создания животных
  */
-
 namespace app\Models;
 
 abstract class Animal
@@ -38,6 +36,4 @@ abstract class Animal
     }
     //возвращает количество продукта за один сбор
     abstract function getCountProduct(): int;
-
-    
 }

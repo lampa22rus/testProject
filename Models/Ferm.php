@@ -1,52 +1,40 @@
 <?php 
-
 /**
  * Класс фермы которая будет содержать в себе всю информацию о животных и их продуктах
  */
-
-
 namespace app\Models;
 use app\Models\Animal;
-include 'Animal.php';
 class Ferm {
     protected array $animals;
-    protected array $animalsNamesCounts;
     protected array $animalsProductCounts;
     //создаем классы животного и храним их в переменной для дальнейшей работы с ними
     public function addAnimals(Animal $animal,$count = 1):void
     {
         for($i = 0;$i<$count;$i++){
-            $this -> animals [] = $animal->addAnimal();
+            $this -> animals [$animal->getName()][] = $animal->addAnimal();
         }
+        
         
     }
-    //получение массива где ключ это название животного, а значение это количество его копий
-    public function getAnimalsNamesCounts():array
-    {
-        $this->animalsNamesCounts = [];
-        for($i = 0;$i<count($this -> animals);$i++){
-            isset($this->animalsNamesCounts[$this->animals[$i]->getName()]) ? (
-                $this->animalsNamesCounts[$this->animals[$i]->getName()] += 1
-            )
-            : (
-                $this->animalsNamesCounts[$this->animals[$i]->getName()] = 1
-            );
-        }
-        
-        return $this -> animalsNamesCounts;
+    public function getAnimals(){
+        return $this -> animals;
     }
     //добавление продукта полученного за N количество дней, где ключ это название, а значение количество собранного продукта за весь период
     public function addСollectProducts($day= 1):void
     {   
         $this->animalsProductCounts = [];
+
         for($j = 0; $j < $day;$j++){
-            for($i = 0;$i<count($this -> animals);$i++){
-                isset($this->animalsProductCounts[$this->animals[$i]->getProduct()]) ? (
-                    $this->animalsProductCounts[$this->animals[$i]->getProduct()] +=$this -> animals[$i] ->getCountProduct()
-                )
-                : (
-                    $this->animalsProductCounts[$this->animals[$i]->getProduct()] = $this -> animals[$i] ->getCountProduct()
-                );
+            foreach($this -> animals as $animalName => $typeAnimal){
+                foreach($typeAnimal as $animal){
+                    isset($this->animalsProductCounts[$animal->getProduct()]) ? (
+                        $this->animalsProductCounts[$animal->getProduct()] +=$animal->getCountProduct()
+                    )
+                    : (
+                        $this->animalsProductCounts[$animal->getProduct()] = $animal->getCountProduct()
+                    );
+                }
+                
             }
         }
     }
@@ -59,18 +47,16 @@ class Ferm {
         {
             echo($productName . " : " . $productCount . "<br>");
         }
-        
+        echo '<br>';
     }
     //вывод информации о животных
     public function infoAnimals():void
     {
         echo "Тип животных и их количество<br>"; 
-        foreach($this  -> getAnimalsNamesCounts() as $animalName => $animalCount)
+        foreach($this  -> animals as $animalName => $animalCount)
         {
-            echo($animalName . " : " . $animalCount . "<br>");
+            echo($animalName . " : " . count($animalCount) . "<br>");
         }
+        echo '<br>';
     }
-
-    
-    
 }

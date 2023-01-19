@@ -1,5 +1,4 @@
 <?php
-
 namespace app\Animals;
 use app\Models\Animal ;
 
