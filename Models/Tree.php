@@ -5,18 +5,18 @@
 
 namespace app\Models;
 
-abstract class Animal
+abstract class Tree
 {
     protected string $Id;
-    protected string $AnimalName;
-    protected string $ProductName;
+    protected string $TreeName;
+    protected string $Fetus;
     //метод вызывается при объявлении экземпляра этого класса и присваивает ID
     public function __construct()
     {
         $this->Id = uniqid();
     }
     //возврат объекта этого класса
-    public function addAnimal(): static
+    public function addTree(): static
     {
         return new static();
     }
@@ -28,13 +28,15 @@ abstract class Animal
     // получение названия животного
     public function getName(): string
     {
-        return $this->AnimalName;
+        return $this->TreeName;
     }
     // получение названия продукта которое дает животное
-    public function getProduct(): string
+    public function getFetus(): string
     {
-        return $this->ProductName;
+        return $this->Fetus;
     }
     //возвращает количество продукта за один сбор
-    abstract protected function getCountProduct(): int;
+    abstract protected function getCountFetus(): int;
+
+    abstract protected function getWeight(): int;
 }

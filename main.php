@@ -2,21 +2,20 @@
 
 namespace app;
 
-use app\Models\Ferm;
+use app\Models\Garden;
 
-use app\Animals\Chiken;
-use app\Animals\Cow;
+use app\Trees\Apple;
+use app\Trees\Pear;
 
 require_once('Utils/Autoload.php');
 
-$ferm = new Ferm();
-$ferm ->addAnimals(new Cow, 10);
-$ferm ->addAnimals(new Chiken, 20);
-$ferm ->infoAnimals();
-$ferm -> addСollectProducts(7);
-$ferm ->infoProducts();
-$ferm ->addAnimals(new Cow, 2);
-$ferm ->addAnimals(new Chiken, 5);
-$ferm ->infoAnimals();
-$ferm -> addСollectProducts(7);
-$ferm ->infoProducts();
+$Garden = new Garden();
+$Garden ->addTree(new Apple, 10);
+echo "ds";
+$Garden ->addTree(new Pear, 15);
+// echo var_dump($Garden);
+$Garden ->infoTrees();
+
+$Garden -> addСollectProducts();
+$Garden ->infoProducts();
+
